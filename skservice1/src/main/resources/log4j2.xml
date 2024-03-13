@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <JsonLayout compact="true" eventEol="true">
+                <KeyValuePair key="trace_id" value="${ctx:trace_id}"/>
+                <KeyValuePair key="span_id" value="${ctx:span_id}"/>
+                <KeyValuePair key="service.name" value="${sys:otel.resource.service.name}"/>
+                <KeyValuePair key="trace_sampled" value="${ctx:trace_flags}"/>
+            </JsonLayout>
+            <PatternLayout>
+                <pattern>
+                    service.name=${sys:otel.resource.service.name}, deployment.environment=${sys:otel.resource.deployment.environment} %m%n
+                </pattern>
+            </PatternLayout>
+        </Console>
+    </Appenders>
+<!-- More configuration -->
+</Configuration>
